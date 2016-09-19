@@ -1,38 +1,38 @@
 # Private class
-class gitolite::install inherits gitolite {
+class ogi_gitolite::install inherits ogi_gitolite {
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  if $gitolite::manage_user {
-    group { $gitolite::group_name:
+  if $ogi_gitolite::manage_user {
+    group { $ogi_gitolite::group_name:
       ensure => 'present',
       system => true,
     }->
-    user { $gitolite::user_name:
+    user { $ogi_gitolite::user_name:
       ensure           => 'present',
-      gid              => $gitolite::group_name,
-      home             => $gitolite::home_dir,
+      gid              => $ogi_gitolite::group_name,
+      home             => $ogi_gitolite::home_dir,
       password         => '*',
       password_max_age => '99999',
       password_min_age => '0',
       shell            => '/bin/sh',
       system           => true,
-      before           => File[$gitolite::home_dir],
+      before           => File[$ogi_gitolite::home_dir],
     }
   }
 
-  if $gitolite::manage_home_dir {
-    file { $gitolite::home_dir:
+  if $ogi_gitolite::manage_home_dir {
+    file { $ogi_gitolite::home_dir:
       ensure => directory,
-      owner  => $gitolite::user_name,
-      group  => $gitolite::group_name,
-      before => Package[$gitolite::package_name],
+      owner  => $ogi_gitolite::user_name,
+      group  => $ogi_gitolite::group_name,
+      before => Package[$ogi_gitolite::package_name],
     }
   }
 
-  package { $gitolite::package_name:
-    ensure => $gitolite::package_ensure,
+  package { $ogi_gitolite::package_name:
+    ensure => $ogi_gitolite::package_ensure,
     alias  => 'gitolite',
   }
 }

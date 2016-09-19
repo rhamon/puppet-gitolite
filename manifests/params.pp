@@ -1,7 +1,7 @@
 # == Class: gitolite::params
 #
 # This is a container class with default parameters for gitolite classes.
-class gitolite::params {
+class ogi_gitolite::params {
   $package_ensure = 'present'
 
   case $::osfamily {

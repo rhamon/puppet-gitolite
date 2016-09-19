@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'gitolite', :type => 'class' do
+describe 'ogi_gitolite', :type => 'class' do
   let(:facts) {{ :is_virtual => 'false' }}
 
   ['Debian', 'RedHat'].each do |system|
@@ -46,10 +46,10 @@ describe 'gitolite', :type => 'class' do
         end
       end # Validations
   
-      it { should contain_class('gitolite::install').that_comes_before('Class[gitolite::config]') }
-      it { should contain_class('gitolite::config') }
+      it { should contain_class('ogi_gitolite::install').that_comes_before('Class[ogi_gitolite::config]') }
+      it { should contain_class('ogi_gitolite::config') }
   
-      describe 'gitolite::install' do
+      describe 'ogi_gitolite::install' do
         describe 'default' do
           let(:params) { { :admin_key_content => 'key'} }
           it { should contain_group('gitolite3') }
@@ -75,9 +75,9 @@ describe 'gitolite', :type => 'class' do
           let(:params) { { :package_ensure => 'latest', :admin_key_content => 'key' } }
           it { should contain_package('gitolite3').with(:ensure => 'latest') }
         end
-      end # gitolite::install
+      end # ogi_gitolite::install
   
-      describe 'gitolite::config' do
+      describe 'ogi_gitolite::config' do
         describe 'default' do
           let(:params) { { :admin_key_content => 'key' } }
           it { should contain_file('/var/lib/gitolite3/admin.pub').with(:source => nil, :content => 'key', :owner => 'gitolite3', :group => 'gitolite3')}
@@ -124,7 +124,7 @@ describe 'gitolite', :type => 'class' do
           let(:params) { { :repo_specific_hooks => true, :admin_key_content => 'key' } }
           it { should contain_file('/var/lib/gitolite3/.gitolite.rc').with(:content => /^\s+'repo-specific-hooks'/) }
         end
-      end #gitolite::config
+      end #ogi_gitolite::config
     end #when on system #{system}
   end #system
 end

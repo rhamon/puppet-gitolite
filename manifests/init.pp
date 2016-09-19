@@ -1,21 +1,21 @@
-class gitolite (
+class ogi_gitolite (
   $admin_key_content   = undef,
   $admin_key_source    = undef,
-  $allow_local_code    = $gitolite::params::allow_local_code,
-  $git_config_keys     = $gitolite::params::git_config_keys,
-  $group_name          = $gitolite::params::group_name,
-  $home_dir            = $gitolite::params::home_dir,
-  $local_code_in_repo  = $gitolite::params::local_code_in_repo,
-  $local_code_path     = $gitolite::params::local_code_path,
-  $manage_home_dir     = $gitolite::params::manage_home_dir,
-  $manage_user         = $gitolite::params::manage_user,
-  $package_ensure      = $gitolite::params::package_ensure,
-  $package_name        = $gitolite::params::package_name,
-  $repo_specific_hooks = $gitolite::params::repo_specific_hooks,
-  $umask               = $gitolite::params::umask,
-  $user_name           = $gitolite::params::user_name,
-  $version             = $gitolite::params::version,
-) inherits gitolite::params {
+  $allow_local_code    = $ogi_gitolite::params::allow_local_code,
+  $git_config_keys     = $ogi_gitolite::params::git_config_keys,
+  $group_name          = $ogi_gitolite::params::group_name,
+  $home_dir            = $ogi_gitolite::params::home_dir,
+  $local_code_in_repo  = $ogi_gitolite::params::local_code_in_repo,
+  $local_code_path     = $ogi_gitolite::params::local_code_path,
+  $manage_home_dir     = $ogi_gitolite::params::manage_home_dir,
+  $manage_user         = $ogi_gitolite::params::manage_user,
+  $package_ensure      = $ogi_gitolite::params::package_ensure,
+  $package_name        = $ogi_gitolite::params::package_name,
+  $repo_specific_hooks = $ogi_gitolite::params::repo_specific_hooks,
+  $umask               = $ogi_gitolite::params::umask,
+  $user_name           = $ogi_gitolite::params::user_name,
+  $version             = $ogi_gitolite::params::version,
+) inherits ogi_gitolite::params {
   validate_string($package_ensure)
   validate_string($package_name)
   validate_re($version, ['2', '3'])
